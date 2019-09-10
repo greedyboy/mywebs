@@ -37,6 +37,7 @@ branches:
 env:
  global:
    - gking_CO_REF: git.dev.tencent.com/pond/gking.git #设置GH_REF，注意更改yourname
+   - Pond_CO_TOKEN: 34f9589b7045a778ca55728513e714eb04cd190e
 
 # configure notifications (email, IRC, campfire etc)
 # please update this section to your needs!
