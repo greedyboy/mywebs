@@ -20,6 +20,8 @@ jobs:
       run: |
         npm install
         npm audit
+        npm audit fix
+        npm install hexo-cli -g
         hexo clean
         hexo g
         git clone https://git.dev.tencent.com/pond/gking.git .deploy_git
