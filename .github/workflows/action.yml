@@ -21,6 +21,7 @@ jobs:
         npm install
         npm audit fix
         npm install hexo-cli -g
+        hexo g
 
       env:
         CI: true
