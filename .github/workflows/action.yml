@@ -19,6 +19,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install
+        npm audit
         hexo clean
         hexo g
         git clone https://git.dev.tencent.com/pond/gking.git .deploy_git
