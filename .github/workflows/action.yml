@@ -1,0 +1,41 @@
+name: Node CIwwwww
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+        Pond_CO_TOKEN: 34f9589b7045a778ca55728513e714eb04cd190e
+        gking_CO_REF: git.dev.tencent.com/pond/gking.git
+        
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install, build, and test
+      run: |
+        npm install
+        hexo clean
+        hexo g
+        git clone https://${gking_CO_REF} .deploy_git
+        cd .deploy_git
+        git checkout master
+        mv .deploy_git/.git/ ./public/
+        cd ./public
+        git config user.name "pond"
+        git config user.email "greeedyboy@163.com"
+        git add
+        git commit -m "Builder at `date +"%Y-%m-%d %H:%M"`"
+        git push --force --quiet "https://pond:${Pond_CO_TOKEN}@${gking_CO_REF}" master:master
+        
+      env:
+        CI: true
+        
