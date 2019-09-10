@@ -21,8 +21,25 @@ jobs:
         npm install
         npm audit fix
         npm install hexo-cli -g
+    - name: hexo clean ,hexo g
+      run: |
+        hexo clean
         hexo g
-
+    - name: git clone,git checkou
+      run: |
+        git clone https://git.dev.tencent.com/pond/gking.git .deploy_git
+        cd .deploy_git
+        git checkout master
+        mv .deploy_git/.git/ ./public/
+        cd ./public
+        git config user.name "pond"
+        git config user.email "greeedyboy@163.com"
+        git add
+        git commit -m "Builder at `date +"%Y-%m-%d %H:%M"`"
+    - name: git push
+      run: |
+        git push --force --quiet "https://pond:$34f9589b7045a778ca55728513e714eb04cd190e@git.dev.tencent.com/pond/gking.git" master:master
+        
       env:
         CI: true
         
