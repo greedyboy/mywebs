@@ -10,10 +10,6 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
-        Pond_CO_TOKEN: [34f9589b7045a778ca55728513e714eb04cd190e]
-        gking_CO_REF: [git.dev.tencent.com/pond/gking.git]
-        
-
     steps:
     - uses: actions/checkout@master
     - name: Use Node.js ${{ matrix.node-version }}
@@ -25,7 +21,7 @@ jobs:
         npm install
         hexo clean
         hexo g
-        git clone https://${{ matrix.gking_CO_REF}} .deploy_git
+        git clone https://git.dev.tencent.com/pond/gking.git .deploy_git
         cd .deploy_git
         git checkout master
         mv .deploy_git/.git/ ./public/
@@ -34,7 +30,7 @@ jobs:
         git config user.email "greeedyboy@163.com"
         git add
         git commit -m "Builder at `date +"%Y-%m-%d %H:%M"`"
-        git push --force --quiet "https://pond:${{ matrix.Pond_CO_TOKEN}}@${{ matrix.gking_CO_REF}}" master:master
+        git push --force --quiet "https://pond:$34f9589b7045a778ca55728513e714eb04cd190e@git.dev.tencent.com/pond/gking.git" master:master
         
       env:
         CI: true
