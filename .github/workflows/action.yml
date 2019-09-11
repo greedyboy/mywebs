@@ -27,7 +27,7 @@ jobs:
         hexo g
     - name: git clone,git checkou
       run: |
-        git clone https://git.dev.tencent.com/pond/gking.git .deploy_git
+        git clone https://git.dev.tencent.com/pond/gking2.git .deploy_git
         cd .deploy_git
         git checkout master
         mv .deploy_git/.git/ ./public/
@@ -38,7 +38,7 @@ jobs:
         git commit -m "Builder at `date +"%Y-%m-%d %H:%M"`"
     - name: git push
       run: |
-        git push --force --quiet "https://pond:$34f9589b7045a778ca55728513e714eb04cd190e@git.dev.tencent.com/pond/gking.git" master:master
+        git push --force --quiet "https://pond:$34f9589b7045a778ca55728513e714eb04cd190e@git.dev.tencent.com/pond/gking2.git" master:master
         
       env:
         CI: true
